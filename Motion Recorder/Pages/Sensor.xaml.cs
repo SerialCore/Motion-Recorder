@@ -67,7 +67,7 @@ namespace Motion_Recorder.Pages
             if (_accelerometer == null && _inclinometer == null && _gyrometer == null)
             {
                 record_control.IsEnabled = false;
-                record_control.Content = "所有所需传感器都不适用";
+                record_control.Content = "All sensors unavailable";
                 clear_control.IsEnabled = false;
                 store_table.IsEnabled = false;
                 store_object.IsEnabled = false;
@@ -133,10 +133,10 @@ namespace Motion_Recorder.Pages
             }
             catch
             {
-                await new MessageDialog("无法获取采集周期").ShowAsync();
+                await new MessageDialog("Could not identify input").ShowAsync();
                 return;
             }
-            record_control.Content = "停止暂停记录";
+            record_control.Content = "Stop / Pause";
             clear_control.IsEnabled = false;
             store_table.IsEnabled = false;
             store_object.IsEnabled = false;
@@ -316,7 +316,7 @@ namespace Motion_Recorder.Pages
         {
             if (PeriodicTimer != null)
                 PeriodicTimer.Cancel();
-            record_control.Content = "开始继续记录";
+            record_control.Content = "Start / Continue";
             clear_control.IsEnabled = true;
             store_table.IsEnabled = true;
             store_object.IsEnabled = true;
@@ -333,18 +333,18 @@ namespace Motion_Recorder.Pages
         {
             FileSavePicker picker = new FileSavePicker();
             // 指定文件类型
-            picker.FileTypeChoices.Add("力学量表格", new String[] { ".txt" });
+            picker.FileTypeChoices.Add("Motion Table", new String[] { ".txt" });
             // 默认定位到桌面
             picker.SuggestedStartLocation = PickerLocationId.Desktop;
             // 默认文件名
-            picker.SuggestedFileName = "力学量表格" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            picker.SuggestedFileName = "Table-" + DateTime.Now.ToString("yyyyMMddHHmmss");
             // 显示选择器
             StorageFile file = await picker.PickSaveFileAsync();
             // 保存文本
             if (file != null)
             {
                 StringBuilder data_record = new StringBuilder();
-                data_record.AppendLine("时间\t周期\tx加速度\ty加速度\tz加速度\tx磁倾角\ty磁倾角\tz磁倾角\tx角加速度\ty角加速度\tz角加速度");
+                data_record.AppendLine("date\tPeriod\tx-acceleration\ty-acceleration\tz-acceleration\tx-inclination\ty-inclination\tz-inclination\tx-angular-velocity\ty-angular-velocity\tz-angular-velocity");
                 foreach (SensorData data in SData)
                 {
                     data_record.AppendLine(data.Time + "\t" + data.Span + "\t"
@@ -363,11 +363,11 @@ namespace Motion_Recorder.Pages
         {
             FileSavePicker picker = new FileSavePicker();
             // 指定文件类型
-            picker.FileTypeChoices.Add("力学量对象", new String[] { ".mdo" });
+            picker.FileTypeChoices.Add("Motion Object", new String[] { ".mdo" });
             // 默认定位到桌面
             picker.SuggestedStartLocation = PickerLocationId.Desktop;
             // 默认文件名
-            picker.SuggestedFileName = "力学量对象" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            picker.SuggestedFileName = "Object-" + DateTime.Now.ToString("yyyyMMddHHmmss");
             // 显示选择器
             StorageFile file = await picker.PickSaveFileAsync();
             if (file != null)

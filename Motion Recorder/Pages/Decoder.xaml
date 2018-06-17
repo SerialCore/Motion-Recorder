@@ -10,10 +10,10 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <TextBlock Text="当前数据记录数：">
+        <TextBlock Text="current data entries：">
             <Run x:Name="data_count" />
         </TextBlock>
-        <Button Content="打开对象数据文件" Click="open_object"/>
+        <Button Content="Open the object file" Click="open_object"/>
 
     </Grid>
     

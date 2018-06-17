@@ -10,49 +10,42 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot >
-            <PivotItem Header="应用">
+            <PivotItem Header="APP">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
                     <StackPanel >
-                        <TextBlock Text="应用信息" FontSize="30"/>
+                        <TextBlock Text="Info" FontSize="30"/>
                         <TextBlock />
-                        <TextBlock Text="系统系列：">
+                        <TextBlock Text="System Family：">
                             <Run x:Name="systemFamily"/>
                         </TextBlock>
-                        <TextBlock Text="系统版本：">
+                        <TextBlock Text="System Version：">
                             <Run x:Name="systemVersion"/>
                         </TextBlock>
-                        <TextBlock Text="系统架构：">
+                        <TextBlock Text="System Architecture：">
                             <Run x:Name="systemArchitecture"/>
                         </TextBlock>
-                        <TextBlock Text="应用名：">
+                        <TextBlock Text="Application Name：">
                             <Run x:Name="applicationName"/>
                         </TextBlock>
-                        <TextBlock Text="应用版本：">
+                        <TextBlock Text="Application Version：">
                             <Run x:Name="applicationVersion"/>
                         </TextBlock>
-                        <TextBlock Text="设备商：">
+                        <TextBlock Text="Device Manufacturer：">
                             <Run x:Name="deviceManufacturer"/>
                         </TextBlock>
-                        <TextBlock Text="设备名：">
+                        <TextBlock Text="Device Model：">
                             <Run x:Name="deviceModel"/>
                         </TextBlock>
                         <TextBlock />
-                        <TextBlock Text="开发者信息" FontSize="30"/>
+                        <TextBlock Text="Developer" FontSize="30"/>
                         <TextBlock />
-                        <HyperlinkButton Content="工作邮箱：zwx.atomx@outlook.com" NavigateUri="mailto:zwx.atomx@outlook.com"/>
+                        <HyperlinkButton Content="Work：zwx.atomx@outlook.com" NavigateUri="mailto:zwx.atomx@outlook.com"/>
                         <TextBlock Text="QQ：1315295759"/>
                         <HyperlinkButton Content="BiliBili：Blamder" NavigateUri="https://space.bilibili.com/62426742/"/>
-                        <TextBlock Text="（欢迎感兴趣的同学，明年4月以后一起讨论使用场景）"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
-            <PivotItem Header="运动">
-
-            </PivotItem>
-            <PivotItem Header="场景">
-
-            </PivotItem>
-            <PivotItem Header="传感器">
+            <PivotItem Header="Sensor">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
                     <StackPanel Margin="10,10">
                         <Image Source="Assets/sensor-orientation-0.png" Height="200" Width="280" HorizontalAlignment="Left"/>

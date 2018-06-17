@@ -97,55 +97,55 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text=" x加速度：" FontSize="20">
+            <TextBlock Text="x-acceleration：" FontSize="20">
                 <Run x:Name="acceleration_x" />
             </TextBlock>
-            <TextBlock Text=" y加速度：" FontSize="20">
+            <TextBlock Text="y-acceleration：" FontSize="20">
                 <Run x:Name="acceleration_y" />
             </TextBlock>
-            <TextBlock Text=" z加速度：" FontSize="20">
+            <TextBlock Text="z-acceleration：" FontSize="20">
                 <Run x:Name="acceleration_z" />
             </TextBlock>
-            <TextBlock Text=" x磁倾角：" FontSize="20">
+            <TextBlock Text="x-inclination：" FontSize="20">
                 <Run x:Name="inclination_x" />
             </TextBlock>
-            <TextBlock Text=" y磁倾角：" FontSize="20">
+            <TextBlock Text="y-inclination：" FontSize="20">
                 <Run x:Name="inclination_y" />
             </TextBlock>
-            <TextBlock Text=" z磁倾角：" FontSize="20">
+            <TextBlock Text="z-inclination：" FontSize="20">
                 <Run x:Name="inclination_z" />
             </TextBlock>
-            <TextBlock Text=" x角速度：" FontSize="20">
+            <TextBlock Text="x-angular-velocity：" FontSize="20">
                 <Run x:Name="angular_velocity_x" />
             </TextBlock>
-            <TextBlock Text=" y角速度：" FontSize="20">
+            <TextBlock Text="y-angular-velocity：" FontSize="20">
                 <Run x:Name="angular_velocity_y" />
             </TextBlock>
-            <TextBlock Text=" z角速度：" FontSize="20">
+            <TextBlock Text="z-angular-velocity：" FontSize="20">
                 <Run x:Name="angular_velocity_z" />
             </TextBlock>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBox x:Name="timeSpan" Header="采集周期（mm）：" Text="500" 
+            <TextBox x:Name="timeSpan" Header="Period（mm）：" Text="500" 
                      VerticalAlignment="Center" HorizontalAlignment="Center"
                      InputScope="Number"/>
-            <TextBlock Text="数据记录数：" HorizontalAlignment="Center">
+            <TextBlock Text="Entries：" HorizontalAlignment="Center">
                 <Run x:Name="data_count" Text="0"/>
             </TextBlock>
             <TextBlock />
-            <ToggleButton x:Name="record_control" Content="开始继续记录" 
+            <ToggleButton x:Name="record_control" Content="Start / Continue"
                           Checked="record_control_Checked" Unchecked="record_control_Unchecked" 
-                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                          VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
             <TextBlock />
-            <Button x:Name="clear_control" Content="清空内部数据" Click="clear_data"
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button x:Name="clear_control" Content="Clear cache" Click="clear_data"
+                    VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
             <TextBlock />
-            <Button x:Name="store_table" Content="导出表格数据" Click="export_table" 
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button x:Name="store_table" Content="Export table" Click="export_table"
+                    VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
             <TextBlock />
-            <Button x:Name="store_object" Content="导出对象数据" Click="export_object" 
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button x:Name="store_object" Content="Export object" Click="export_object"
+                    VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
         </StackPanel>
 
     </Grid>
