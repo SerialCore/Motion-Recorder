@@ -1,0 +1,67 @@
+﻿<Page
+    x:Class="Motion_Recorder.Pages.About"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Motion_Recorder.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Pivot >
+            <PivotItem Header="应用">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel >
+                        <TextBlock Text="应用信息" FontSize="30"/>
+                        <TextBlock />
+                        <TextBlock Text="系统系列：">
+                            <Run x:Name="systemFamily"/>
+                        </TextBlock>
+                        <TextBlock Text="系统版本：">
+                            <Run x:Name="systemVersion"/>
+                        </TextBlock>
+                        <TextBlock Text="系统架构：">
+                            <Run x:Name="systemArchitecture"/>
+                        </TextBlock>
+                        <TextBlock Text="应用名：">
+                            <Run x:Name="applicationName"/>
+                        </TextBlock>
+                        <TextBlock Text="应用版本：">
+                            <Run x:Name="applicationVersion"/>
+                        </TextBlock>
+                        <TextBlock Text="设备商：">
+                            <Run x:Name="deviceManufacturer"/>
+                        </TextBlock>
+                        <TextBlock Text="设备名：">
+                            <Run x:Name="deviceModel"/>
+                        </TextBlock>
+                        <TextBlock />
+                        <TextBlock Text="开发者信息" FontSize="30"/>
+                        <TextBlock />
+                        <HyperlinkButton Content="工作邮箱：zwx.atomx@outlook.com" NavigateUri="mailto:zwx.atomx@outlook.com"/>
+                        <TextBlock Text="QQ：1315295759"/>
+                        <HyperlinkButton Content="BiliBili：Blamder" NavigateUri="https://space.bilibili.com/62426742/"/>
+                        <TextBlock Text="（欢迎感兴趣的同学，明年4月以后一起讨论使用场景）"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="运动">
+
+            </PivotItem>
+            <PivotItem Header="场景">
+
+            </PivotItem>
+            <PivotItem Header="传感器">
+                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="10,10">
+                        <Image Source="Assets/sensor-orientation-0.png" Height="200" Width="280" HorizontalAlignment="Left"/>
+                        <Image Source="Assets/sensor-orientation-3.png" Height="280" Width="200" HorizontalAlignment="Left"/>
+                        <Image Source="Assets/gyrometer.png" Height="240" Width="320" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+
+</Page>
