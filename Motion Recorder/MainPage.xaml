@@ -10,55 +10,26 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <NavigationView x:Name="NavView"
-                        ItemInvoked="NavView_ItemInvoked"
-                        SelectionChanged="NavView_SelectionChanged"
-                        Loaded="NavView_Loaded"
-                        Canvas.ZIndex="0">
-
-            <NavigationView.MenuItems>
-                <NavigationViewItem Content="Sensor" Tag="Sensor">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEB68;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItem Content="Decoder" Tag="Decoder">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEA8F;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-            </NavigationView.MenuItems>
-
-            <NavigationView.HeaderTemplate>
-                <DataTemplate>
-                    <Grid Margin="20,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" 
-                                   FontSize="28"
-                                   VerticalAlignment="Top"
-                                   Text="Motion Recorder"/>
-                        <CommandBar Grid.Column="1"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    DefaultLabelPosition="Right"
-                                    Background="Transparent">
-                        </CommandBar>
-                    </Grid>
-                </DataTemplate>
-            </NavigationView.HeaderTemplate>
-
-            <Frame x:Name="ContentFrame" Margin="20,0">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <NavigationThemeTransition/>
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
-
-        </NavigationView>
+        <Pivot >
+            <PivotItem Header="Sensor">
+                <Frame x:Name="sensor" >
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </PivotItem>
+            <PivotItem Header="Decoder">
+                <Frame x:Name="decoder" >
+                    <Frame.ContentTransitions>
+                        <TransitionCollection>
+                            <NavigationThemeTransition/>
+                        </TransitionCollection>
+                    </Frame.ContentTransitions>
+                </Frame>
+            </PivotItem>
+        </Pivot>
 
     </Grid>
 
