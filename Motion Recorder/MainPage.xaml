@@ -10,26 +10,70 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <Pivot >
-            <PivotItem Header="Sensor">
-                <Frame x:Name="sensor" >
-                    <Frame.ContentTransitions>
-                        <TransitionCollection>
-                            <NavigationThemeTransition/>
-                        </TransitionCollection>
-                    </Frame.ContentTransitions>
-                </Frame>
-            </PivotItem>
-            <PivotItem Header="Decoder">
-                <Frame x:Name="decoder" >
-                    <Frame.ContentTransitions>
-                        <TransitionCollection>
-                            <NavigationThemeTransition/>
-                        </TransitionCollection>
-                    </Frame.ContentTransitions>
-                </Frame>
-            </PivotItem>
-        </Pivot>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Entries：" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10">
+                <Run x:Name="data_count" Text="0"/>
+            </TextBlock>
+            <TextBlock Text="Period（mm）：" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10"/>
+            <TextBox x:Name="timeSpan" Text="500" VerticalAlignment="Center" InputScope="Number"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="x-acceleration：" FontSize="20">
+                <Run x:Name="acceleration_x" />
+                </TextBlock>
+                <TextBlock Text="y-acceleration：" FontSize="20">
+                <Run x:Name="acceleration_y" />
+                </TextBlock>
+                <TextBlock Text="z-acceleration：" FontSize="20">
+                <Run x:Name="acceleration_z" />
+                </TextBlock>
+                <TextBlock Text="x-inclination：" FontSize="20">
+                <Run x:Name="inclination_x" />
+                </TextBlock>
+                <TextBlock Text="y-inclination：" FontSize="20">
+                <Run x:Name="inclination_y" />
+                </TextBlock>
+                <TextBlock Text="z-inclination：" FontSize="20">
+                <Run x:Name="inclination_z" />
+                </TextBlock>
+                <TextBlock Text="x-angular-velocity：" FontSize="20">
+                <Run x:Name="angular_velocity_x" />
+                </TextBlock>
+                <TextBlock Text="y-angular-velocity：" FontSize="20">
+                <Run x:Name="angular_velocity_y" />
+                </TextBlock>
+                <TextBlock Text="z-angular-velocity：" FontSize="20">
+                <Run x:Name="angular_velocity_z" />
+                </TextBlock>
+            </StackPanel>
+            
+        </Grid>
+
+        <CommandBar Grid.Row="2" DefaultLabelPosition="Right">
+            <AppBarButton x:Name="record_control" Icon="Play" Label="Record" Click="Record_Click"/>
+            <AppBarButton x:Name="clear_control" Icon="Delete" Label="Clear" Click="Clear_data"/>
+            <AppBarButton x:Name="store_data" Icon="Share" Label="Export" Tapped="Flyout_Tapped">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Export Table Data" Click="Export_table"/>
+                        <MenuFlyoutItem Text="Export Object Data" Click="Export_object"/>
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
+            </AppBarButton>
+            <AppBarSeparator />
+            <AppBarButton Icon="Calculator" Label="Decoder" Click="Decoder_Click"/>
+            <AppBarSeparator />
+            <AppBarButton Icon="Setting" Label="About" Click="About_Click"/>
+        </CommandBar>
 
     </Grid>
 
