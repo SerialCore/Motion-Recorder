@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Motion_Recorder.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,15 +32,6 @@ namespace Motion_Recorder
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            GetInfo();
-            systemFamily.Text = SystemFamily;
-            systemVersion.Text = SystemVersion;
-            systemArchitecture.Text = SystemArchitecture;
-            applicationName.Text = ApplicationName;
-            applicationVersion.Text = ApplicationVersion;
-            deviceManufacturer.Text = DeviceManufacturer;
-            deviceModel.Text = DeviceModel;
-
             SystemNavigationManager.GetForCurrentView().BackRequested += About_BackRequested;
         }
 
@@ -56,6 +48,8 @@ namespace Motion_Recorder
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                     AppViewBackButtonVisibility.Collapsed;
             }
+
+            DisplaySystemInfo();
         }
 
         private void About_BackRequested(object sender, BackRequestedEventArgs e)
@@ -71,44 +65,35 @@ namespace Motion_Recorder
             }
         }
 
-        private string SystemFamily;
-        private string SystemVersion;
-        private string SystemArchitecture;
-        private string ApplicationName;
-        private string ApplicationVersion;
-        private string DeviceManufacturer;
-        private string DeviceModel;
+        private async void Rate(object sender, RoutedEventArgs e)
+            => await ApplicationService.ShowRatingReviewDialog();
 
-        private void GetInfo()
+        private void DisplaySystemInfo()
         {
-            // get the system family name
-            AnalyticsVersionInfo ai = AnalyticsInfo.VersionInfo;
-            SystemFamily = ai.DeviceFamily;
+            applicationName.Text = ApplicationService.ApplicationName;
 
-            // get the system version number
-            string sv = AnalyticsInfo.VersionInfo.DeviceFamilyVersion;
-            ulong v = ulong.Parse(sv);
-            ulong v1 = (v & 0xFFFF000000000000L) >> 48;
-            ulong v2 = (v & 0x0000FFFF00000000L) >> 32;
-            ulong v3 = (v & 0x00000000FFFF0000L) >> 16;
-            ulong v4 = (v & 0x000000000000FFFFL);
-            SystemVersion = $"{v1}.{v2}.{v3}.{v4}";
+            applicationVersion.Text = ApplicationService.ApplicationVersion;
 
-            // get the package architecure
-            Package package = Package.Current;
-            SystemArchitecture = package.Id.Architecture.ToString();
+            cultureInfo.Text = ApplicationService.Culture.DisplayName;
 
-            // get the user friendly app name
-            ApplicationName = package.DisplayName;
+            oSVersion.Text = ApplicationService.OperatingSystemVersion.ToString();
 
-            // get the app version
-            PackageVersion pv = package.Id.Version;
-            ApplicationVersion = $"{pv.Major}.{pv.Minor}.{pv.Build}.{pv.Revision}";
+            deviceModel.Text = ApplicationService.DeviceModel;
 
-            // get the device manufacturer and model name
-            EasClientDeviceInformation eas = new EasClientDeviceInformation();
-            DeviceManufacturer = eas.SystemManufacturer;
-            DeviceModel = eas.SystemProductName;
+            availableMemory.Text = ApplicationService.AvailableMemory.ToString();
+
+            firstVersionInstalled.Text = ApplicationService.FirstVersionInstalled;
+
+            firstUseTime.Text = ApplicationService.FirstUseTime.ToString();
+
+            launchTime.Text = ApplicationService.LaunchTime.ToString();
+
+            lastLaunchTime.Text = ApplicationService.LastLaunchTime.ToString();
+
+            totalLaunchCount.Text = ApplicationService.TotalLaunchCount.ToString();
+
+            appUptime.Text = ApplicationService.AppUptime.ToString("G");
         }
+
     }
 }

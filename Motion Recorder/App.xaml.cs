@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Motion_Recorder.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -68,6 +69,8 @@ namespace Motion_Recorder
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
+                    ApplicationService.TrackAppUse(e);
+
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active

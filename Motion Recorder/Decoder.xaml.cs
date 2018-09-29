@@ -25,7 +25,7 @@ namespace Motion_Recorder
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
-            SystemNavigationManager.GetForCurrentView().BackRequested += About_BackRequested;
+            SystemNavigationManager.GetForCurrentView().BackRequested += Decoder_BackRequested;
         }
 
         public List<SensorData> SData { get; set; }
@@ -62,7 +62,7 @@ namespace Motion_Recorder
             }
         }
 
-        private void About_BackRequested(object sender, BackRequestedEventArgs e)
+        private void Decoder_BackRequested(object sender, BackRequestedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)

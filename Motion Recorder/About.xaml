@@ -11,46 +11,50 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot >
             <PivotItem Header="APP">
-                <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
+                <ScrollViewer Margin="10" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
                     <StackPanel >
-                        <TextBlock Text="Info" FontSize="30"/>
-                        <TextBlock />
-                        <TextBlock Text="System Family：">
-                            <Run x:Name="systemFamily"/>
+                        <TextBlock Text="Application" FontSize="30"/>
+                        <TextBlock >
+                            <LineBreak/>
+                            <Run Text="Application name:   "/>                          
+                            <Run x:Name="applicationName"/><LineBreak/>
+                            <Run Text="Application version:   "/>
+                            <Run x:Name="applicationVersion"/><LineBreak/>
+                            <Run Text="Culture info:   "/>
+                            <Run x:Name="cultureInfo"/><LineBreak/>
+                            <Run Text="Operating system version:   "/>
+                            <Run x:Name="oSVersion"/><LineBreak/>
+                            <Run Text="Device model:   "/>
+                            <Run x:Name="deviceModel"/><LineBreak/>
+                            <Run Text="Available memory(MB):   "/>
+                            <Run x:Name="availableMemory"/><LineBreak/>
+                            <Run Text="First version installed:   "/>
+                            <Run x:Name="firstVersionInstalled"/><LineBreak/>
+                            <Run Text="First use time:   "/>
+                            <Run x:Name="firstUseTime"/><LineBreak/>
+                            <Run Text="Launch time:   "/>
+                            <Run x:Name="launchTime"/><LineBreak/>
+                            <Run Text="Last launch time:   "/>
+                            <Run x:Name="lastLaunchTime"/><LineBreak/>
+                            <Run Text="Total launch count:   "/>
+                            <Run x:Name="totalLaunchCount"/><LineBreak/>
+                            <Run Text="App uptime:   "/>
+                            <Run x:Name="appUptime"/><LineBreak/>
                         </TextBlock>
-                        <TextBlock Text="System Version：">
-                            <Run x:Name="systemVersion"/>
-                        </TextBlock>
-                        <TextBlock Text="System Architecture：">
-                            <Run x:Name="systemArchitecture"/>
-                        </TextBlock>
-                        <TextBlock Text="Application Name：">
-                            <Run x:Name="applicationName"/>
-                        </TextBlock>
-                        <TextBlock Text="Application Version：">
-                            <Run x:Name="applicationVersion"/>
-                        </TextBlock>
-                        <TextBlock Text="Device Manufacturer：">
-                            <Run x:Name="deviceManufacturer"/>
-                        </TextBlock>
-                        <TextBlock Text="Device Model：">
-                            <Run x:Name="deviceModel"/>
-                        </TextBlock>
-                        <TextBlock />
                         <TextBlock Text="Developer" FontSize="30"/>
                         <TextBlock />
                         <HyperlinkButton Content="Work：zwx.atomx@outlook.com" NavigateUri="mailto:zwx.atomx@outlook.com"/>
-                        <TextBlock Text="QQ：1315295759"/>
                         <HyperlinkButton Content="BiliBili：Blamder" NavigateUri="https://space.bilibili.com/62426742/"/>
+                        <Button Content="Rate this app" Width="150" Height="32" Background="LightBlue" Click="Rate"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>
             <PivotItem Header="Sensor">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Disabled">
                     <StackPanel Margin="10,10">
-                        <Image Source="Assets/sensor-orientation-0.png" Height="200" Width="280" HorizontalAlignment="Left"/>
-                        <Image Source="Assets/sensor-orientation-3.png" Height="280" Width="200" HorizontalAlignment="Left"/>
-                        <Image Source="Assets/gyrometer.png" Height="240" Width="320" HorizontalAlignment="Left"/>
+                        <Image Source="Assets/Image/sensor-orientation-0.png" Height="200" Width="280" HorizontalAlignment="Left"/>
+                        <Image Source="Assets/Image/sensor-orientation-3.png" Height="280" Width="200" HorizontalAlignment="Left"/>
+                        <Image Source="Assets/Image/gyrometer.png" Height="240" Width="320" HorizontalAlignment="Left"/>
                     </StackPanel>
                 </ScrollViewer>
             </PivotItem>

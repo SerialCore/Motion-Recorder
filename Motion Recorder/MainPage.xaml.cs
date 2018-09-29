@@ -30,7 +30,6 @@ namespace Motion_Recorder
             this.NavigationCacheMode = NavigationCacheMode.Required;
 
             SData = new ObservableCollection<SensorData>();
-            SView = new ObservableCollection<SensorData>();
             this.DataContext = this;
 
             _displayRequest.RequestActive();
@@ -86,7 +85,6 @@ namespace Motion_Recorder
         bool IsRecording = false;
         ThreadPoolTimer PeriodicTimer;
         public ObservableCollection<SensorData> SData { get; set; }
-        public ObservableCollection<SensorData> SView { get; set; }
 
         private void Decoder_Click(object sender, RoutedEventArgs e)
             => this.Frame.Navigate(typeof(Decoder));
@@ -145,7 +143,6 @@ namespace Motion_Recorder
         private void Clear_data(object sender, RoutedEventArgs e)
         {
             SData.Clear();
-            SView.Clear();
             data_count.Text = "0";
         }
 
@@ -250,25 +247,6 @@ namespace Motion_Recorder
                         AngularVelocityZ = greading.AngularVelocityZ.ToString("F2")
                     });
 
-                    SView.Add(new SensorData
-                    {
-                        AccelerationX = areading.AccelerationX.ToString("F2"),
-                        AccelerationY = areading.AccelerationY.ToString("F2"),
-                        AccelerationZ = areading.AccelerationZ.ToString("F2"),
-                        PitchDegrees = ireading.PitchDegrees.ToString("F2"),
-                        RollDegrees = ireading.RollDegrees.ToString("F2"),
-                        YawDegrees = ireading.YawDegrees.ToString("F2"),
-                        AngularVelocityX = greading.AngularVelocityX.ToString("F2"),
-                        AngularVelocityY = greading.AngularVelocityY.ToString("F2"),
-                        AngularVelocityZ = greading.AngularVelocityZ.ToString("F2")
-                    });
-
-                    // 控制数据表的长度，以便在UI上友好显示
-                    if (SView.Count >= 8)
-                    {
-                        SView.RemoveAt(0);
-                    }
-
                     data_count.Text = SData.Count.ToString();
                 });
             }, period);
@@ -292,22 +270,6 @@ namespace Motion_Recorder
                         RollDegrees = ireading.RollDegrees.ToString("F2"),
                         YawDegrees = ireading.YawDegrees.ToString("F2")
                     });
-
-                    SView.Add(new SensorData
-                    {
-                        AccelerationX = areading.AccelerationX.ToString("F2"),
-                        AccelerationY = areading.AccelerationY.ToString("F2"),
-                        AccelerationZ = areading.AccelerationZ.ToString("F2"),
-                        PitchDegrees = ireading.PitchDegrees.ToString("F2"),
-                        RollDegrees = ireading.RollDegrees.ToString("F2"),
-                        YawDegrees = ireading.YawDegrees.ToString("F2"),
-                    });
-
-                    // 控制数据表的长度，以便在UI上友好显示
-                    if (SView.Count >= 8)
-                    {
-                        SView.RemoveAt(0);
-                    }
 
                     data_count.Text = SData.Count.ToString();
                 });
@@ -333,22 +295,6 @@ namespace Motion_Recorder
                         AngularVelocityZ = greading.AngularVelocityZ.ToString("F2")
                     });
 
-                    SView.Add(new SensorData
-                    {
-                        AccelerationX = areading.AccelerationX.ToString("F2"),
-                        AccelerationY = areading.AccelerationY.ToString("F2"),
-                        AccelerationZ = areading.AccelerationZ.ToString("F2"),
-                        AngularVelocityX = greading.AngularVelocityX.ToString("F2"),
-                        AngularVelocityY = greading.AngularVelocityY.ToString("F2"),
-                        AngularVelocityZ = greading.AngularVelocityZ.ToString("F2")
-                    });
-
-                    // 控制数据表的长度，以便在UI上友好显示
-                    if (SView.Count >= 8)
-                    {
-                        SView.RemoveAt(0);
-                    }
-
                     data_count.Text = SData.Count.ToString();
                 });
             }, period);
@@ -369,19 +315,6 @@ namespace Motion_Recorder
                         AccelerationY = areading.AccelerationY.ToString("F2"),
                         AccelerationZ = areading.AccelerationZ.ToString("F2")
                     });
-
-                    SView.Add(new SensorData
-                    {
-                        AccelerationX = areading.AccelerationX.ToString("F2"),
-                        AccelerationY = areading.AccelerationY.ToString("F2"),
-                        AccelerationZ = areading.AccelerationZ.ToString("F2")
-                    });
-
-                    // 控制数据表的长度，以便在UI上友好显示
-                    if (SView.Count >= 8)
-                    {
-                        SView.RemoveAt(0);
-                    }
 
                     data_count.Text = SData.Count.ToString();
                 });
