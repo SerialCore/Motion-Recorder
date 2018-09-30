@@ -32,6 +32,21 @@ namespace Motion_Recorder
             SData = new ObservableCollection<SensorData>();
             this.DataContext = this;
 
+            accelerationX.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            accelerationY.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            accelerationZ.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            pitchDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            rollDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            yawDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            angularVelocityX.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            angularVelocityY.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            angularVelocityZ.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
+
             _displayRequest.RequestActive();
             _accelerometer = Accelerometer.GetDefault();
             _inclinometer = Inclinometer.GetDefault();
@@ -63,9 +78,19 @@ namespace Motion_Recorder
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Disabled;
+            if (PeriodicTimer != null)
+                PeriodicTimer.Cancel();
+            record_control.Icon = new SymbolIcon(Symbol.Play);
+            record_control.Label = "Record";
+            clear_control.IsEnabled = true;
+            store_data.IsEnabled = true;
+            IsRecording = false;
+
+            _accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+            _inclinometer.ReadingChanged -= Inclinometer_ReadingChanged;
+            _gyrometer.ReadingChanged -= Gyrometer_ReadingChanged;
         }
 
         DisplayRequest _displayRequest = new DisplayRequest();
@@ -197,9 +222,9 @@ namespace Motion_Recorder
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 areading = args.Reading;
-                acceleration_x.Text = areading.AccelerationX.ToString("F2");
-                acceleration_y.Text = areading.AccelerationY.ToString("F2");
-                acceleration_z.Text = areading.AccelerationZ.ToString("F2");
+                accelerationX.Value = Math.Round(areading.AccelerationX, 3);
+                accelerationY.Value = Math.Round(areading.AccelerationY, 3);
+                accelerationZ.Value = Math.Round(areading.AccelerationZ, 3);
             });
         }
 
@@ -208,9 +233,9 @@ namespace Motion_Recorder
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 ireading = args.Reading;
-                inclination_x.Text = ireading.PitchDegrees.ToString("F2");
-                inclination_y.Text = ireading.RollDegrees.ToString("F2");
-                inclination_z.Text = ireading.YawDegrees.ToString("F2");
+                pitchDegrees.Value = Math.Round(ireading.PitchDegrees, 3);
+                rollDegrees.Value = Math.Round(ireading.RollDegrees, 3);
+                yawDegrees.Value = Math.Round(ireading.YawDegrees, 3);
             });
         }
 
@@ -219,9 +244,9 @@ namespace Motion_Recorder
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 greading = args.Reading;
-                angular_velocity_x.Text = greading.AngularVelocityX.ToString("F2");
-                angular_velocity_y.Text = greading.AngularVelocityY.ToString("F2");
-                angular_velocity_z.Text = greading.AngularVelocityZ.ToString("F2");
+                angularVelocityX.Value = Math.Round(greading.AngularVelocityX, 3);
+                angularVelocityY.Value = Math.Round(greading.AngularVelocityY, 3);
+                angularVelocityZ.Value = Math.Round(greading.AngularVelocityZ, 3);
             });
         }
 

@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Motion_Recorder"
+    xmlns:chart="using:LiveCharts.Uwp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -17,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Text="Entries：" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10">
+            <TextBlock Text="Record Entries：" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10">
                 <Run x:Name="data_count" Text="0"/>
             </TextBlock>
             <TextBlock Text="Period（mm）：" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10"/>
@@ -26,36 +27,31 @@
 
         <Grid Grid.Row="1">
 
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock Text="x-acceleration：" FontSize="20">
-                <Run x:Name="acceleration_x" />
-                </TextBlock>
-                <TextBlock Text="y-acceleration：" FontSize="20">
-                <Run x:Name="acceleration_y" />
-                </TextBlock>
-                <TextBlock Text="z-acceleration：" FontSize="20">
-                <Run x:Name="acceleration_z" />
-                </TextBlock>
-                <TextBlock Text="x-inclination：" FontSize="20">
-                <Run x:Name="inclination_x" />
-                </TextBlock>
-                <TextBlock Text="y-inclination：" FontSize="20">
-                <Run x:Name="inclination_y" />
-                </TextBlock>
-                <TextBlock Text="z-inclination：" FontSize="20">
-                <Run x:Name="inclination_z" />
-                </TextBlock>
-                <TextBlock Text="x-angular-velocity：" FontSize="20">
-                <Run x:Name="angular_velocity_x" />
-                </TextBlock>
-                <TextBlock Text="y-angular-velocity：" FontSize="20">
-                <Run x:Name="angular_velocity_y" />
-                </TextBlock>
-                <TextBlock Text="z-angular-velocity：" FontSize="20">
-                <Run x:Name="angular_velocity_z" />
-                </TextBlock>
-            </StackPanel>
-            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <chart:Gauge Grid.Row="0" Grid.Column="0" x:Name="accelerationX" From="-3" To="3"/>
+                <chart:Gauge Grid.Row="0" Grid.Column="1" x:Name="accelerationY" From="-3" To="3"/>
+                <chart:Gauge Grid.Row="0" Grid.Column="2" x:Name="accelerationZ" From="-3" To="3"/>
+
+                <chart:Gauge Grid.Row="1" Grid.Column="0" x:Name="pitchDegrees" From="-180" To="180"/>
+                <chart:Gauge Grid.Row="1" Grid.Column="1" x:Name="rollDegrees" From="-90" To="90"/>
+                <chart:Gauge Grid.Row="1" Grid.Column="2" x:Name="yawDegrees" From="0" To="360"/>
+
+                <chart:Gauge Grid.Row="2" Grid.Column="0" x:Name="angularVelocityX" From="-500" To="500"/>
+                <chart:Gauge Grid.Row="2" Grid.Column="1" x:Name="angularVelocityY" From="-500" To="500"/>
+                <chart:Gauge Grid.Row="2" Grid.Column="2" x:Name="angularVelocityZ" From="-500" To="500"/>
+            </Grid>
+
         </Grid>
 
         <CommandBar Grid.Row="2" DefaultLabelPosition="Right">
