@@ -72,7 +72,6 @@ namespace Motion_Recorder
             if (_accelerometer == null && _inclinometer == null && _gyrometer == null)
             {
                 record_control.IsEnabled = false;
-                record_control.Content = "All sensors unavailable";
                 clear_control.IsEnabled = false;
                 store_data.IsEnabled = false;
             }

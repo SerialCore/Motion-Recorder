@@ -56,8 +56,6 @@ namespace Motion_Recorder
                         StringReader sr = new StringReader(jsonString);
                         SData = (List<SensorData>)serializer.Deserialize(new JsonTextReader(sr), typeof(List<SensorData>));
                     }
-
-                    data_count.Text = SData.Count.ToString();
                 }
             }
         }
@@ -91,7 +89,7 @@ namespace Motion_Recorder
                     SData = (List<SensorData>)serializer.Deserialize(new JsonTextReader(sr), typeof(List<SensorData>));
                 }
 
-                data_count.Text = SData.Count.ToString();
+                dataGrid.ItemsSource = SData;
             }
         }
     }
