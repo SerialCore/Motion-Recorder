@@ -11,65 +11,35 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+        <NavigationView x:Name="NavView"
+                        PaneDisplayMode="Top"
+                        ItemInvoked="NavView_ItemInvoked"
+                        SelectionChanged="NavView_SelectionChanged"
+                        Loaded="NavView_Loaded"
+                        Canvas.ZIndex="0">
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <TextBlock Text="Record Entries：" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10">
-                <Run x:Name="data_count" Text="0"/>
-            </TextBlock>
-            <TextBlock Text="Period（mm）：" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="10"/>
-            <TextBox x:Name="timeSpan" Text="500" VerticalAlignment="Center" InputScope="Number"/>
-        </StackPanel>
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Sensor" Tag="Sensor">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE964;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Decoder" Tag="Decoder">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE9D2;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
 
-        <Grid Grid.Row="1">
+            <Frame x:Name="ContentFrame" >
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <chart:Gauge Grid.Row="0" Grid.Column="0" x:Name="accelerationX" From="-3" To="3"/>
-                <chart:Gauge Grid.Row="0" Grid.Column="1" x:Name="accelerationY" From="-3" To="3"/>
-                <chart:Gauge Grid.Row="0" Grid.Column="2" x:Name="accelerationZ" From="-3" To="3"/>
-
-                <chart:Gauge Grid.Row="1" Grid.Column="0" x:Name="pitchDegrees" From="-180" To="180"/>
-                <chart:Gauge Grid.Row="1" Grid.Column="1" x:Name="rollDegrees" From="-90" To="90"/>
-                <chart:Gauge Grid.Row="1" Grid.Column="2" x:Name="yawDegrees" From="0" To="360"/>
-
-                <chart:Gauge Grid.Row="2" Grid.Column="0" x:Name="angularVelocityX" From="-500" To="500"/>
-                <chart:Gauge Grid.Row="2" Grid.Column="1" x:Name="angularVelocityY" From="-500" To="500"/>
-                <chart:Gauge Grid.Row="2" Grid.Column="2" x:Name="angularVelocityZ" From="-500" To="500"/>
-            </Grid>
-
-        </Grid>
-
-        <CommandBar Grid.Row="2" DefaultLabelPosition="Right">
-            <AppBarButton x:Name="record_control" Icon="Play" Label="Record" Click="Record_Click"/>
-            <AppBarButton x:Name="clear_control" Icon="Delete" Label="Clear" Click="Clear_data"/>
-            <AppBarButton x:Name="store_data" Icon="Share" Label="Export" Tapped="Flyout_Tapped">
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Text="Export Table Data" Click="Export_table"/>
-                        <MenuFlyoutItem Text="Export Object Data" Click="Export_object"/>
-                    </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
-            </AppBarButton>
-            <AppBarSeparator />
-            <AppBarButton Icon="Calculator" Label="Decoder" Click="Decoder_Click"/>
-            <AppBarSeparator />
-            <AppBarButton Icon="Setting" Label="About" Click="About_Click"/>
-        </CommandBar>
+        </NavigationView>
 
     </Grid>
 
