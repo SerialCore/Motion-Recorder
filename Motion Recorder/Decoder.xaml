@@ -61,7 +61,7 @@
             </controls:DataGrid.RowDetailsTemplate>
         </controls:DataGrid>
 
-        <CommandBar Grid.Row="2" DefaultLabelPosition="Right">
+        <CommandBar Grid.Row="2" DefaultLabelPosition="Right" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <AppBarButton Icon="Import" Label="Import" Click="OpenObject"/>
         </CommandBar>
 

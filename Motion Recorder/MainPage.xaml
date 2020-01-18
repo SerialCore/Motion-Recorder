@@ -13,10 +13,10 @@
 
         <NavigationView x:Name="NavView"
                         PaneDisplayMode="Top"
+                        IsBackButtonVisible="Collapsed"
                         ItemInvoked="NavView_ItemInvoked"
                         SelectionChanged="NavView_SelectionChanged"
-                        Loaded="NavView_Loaded"
-                        Canvas.ZIndex="0">
+                        Loaded="NavView_Loaded">
 
             <NavigationView.MenuItems>
                 <NavigationViewItem Content="Sensor" Tag="Sensor">

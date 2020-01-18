@@ -43,8 +43,7 @@
                         </TextBlock>
                         <TextBlock Text="Developer" FontSize="30"/>
                         <TextBlock />
-                        <HyperlinkButton Content="Work：zwx.atomx@outlook.com" NavigateUri="mailto:zwx.atomx@outlook.com"/>
-                        <HyperlinkButton Content="BiliBili：Blamder" NavigateUri="https://space.bilibili.com/62426742/"/>
+                        <HyperlinkButton Content="zwx.atomx@outlook.com" NavigateUri="mailto:zwx.atomx@outlook.com"/>
                         <Button Content="Rate this app" Width="150" Height="32" Background="LightBlue" Click="Rate"/>
                     </StackPanel>
                 </ScrollViewer>

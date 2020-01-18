@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
   <Publisher>CN=73D1BF38-7322-4954-A5E9-541DD3BC2D66</Publisher>
-  <PublisherDisplayName>张文轩</PublisherDisplayName>
+  <PublisherDisplayName>Serial Core Studio</PublisherDisplayName>
   <DeveloperAccountType>MSA</DeveloperAccountType>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
@@ -241,6 +241,8 @@
     <Language Code="no-no" InMinimumRequirementSet="true" />
     <Language Code="nso" InMinimumRequirementSet="true" />
     <Language Code="nso-za" InMinimumRequirementSet="true" />
+    <Language Code="om" InMinimumRequirementSet="false" />
+    <Language Code="om-et" InMinimumRequirementSet="false" />
     <Language Code="or" InMinimumRequirementSet="true" />
     <Language Code="or-in" InMinimumRequirementSet="true" />
     <Language Code="pa" InMinimumRequirementSet="true" />
@@ -361,13 +363,14 @@
   <ProductReservedInfo>
     <MainPackageIdentityName>16496zhwx.30940A4610B6C</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>力学量采集器</ReservedName>
       <ReservedName>Motion Recorder</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>16496zhwx.CFrontCompiler</MainPackageIdentityName>
     <MainPackageIdentityName>16496zhwx.26930D67DAD7</MainPackageIdentityName>
+    <MainPackageIdentityName>16496zhwx.3061351BAC423</MainPackageIdentityName>
+    <MainPackageIdentityName>16496zhwx.42101F2B8F267</MainPackageIdentityName>
     <MainPackageIdentityName>16496zhwx.TheoPhysRSS</MainPackageIdentityName>
     <MainPackageIdentityName>16496zhwx.LostinMatrix</MainPackageIdentityName>
     <MainPackageIdentityName>16496zhwx.MirrorScreen</MainPackageIdentityName>
@@ -379,9 +382,25 @@
     <MainPackageIdentityName>16496zhwx.TaskFlowforResearch</MainPackageIdentityName>
     <MainPackageIdentityName>16496zhwx.MicrosoftDevelopRSS</MainPackageIdentityName>
     <MainPackageIdentityName>16496zhwx.35404E73783C3</MainPackageIdentityName>
-    <MainPackageIdentityName>16496zhwx.42101F2B8F267</MainPackageIdentityName>
     <MainPackageIdentityName>16496zhwx.6164141C316F3</MainPackageIdentityName>
-    <MainPackageIdentityName>16496zhwx.3061351BAC423</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9PKFFRN2Q41H" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9PKFFRN2Q41H">
+    <BundleInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>X86</PackageArchitecture>
+        <PackageMaxArchitectureVersion>3.10.28.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>X64</PackageArchitecture>
+        <PackageMaxArchitectureVersion>3.10.28.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+      <PackageInfo>
+        <OsMinVersion>0.0.0.0</OsMinVersion>
+        <PackageArchitecture>Arm</PackageArchitecture>
+        <PackageMaxArchitectureVersion>3.10.28.0</PackageMaxArchitectureVersion>
+      </PackageInfo>
+    </BundleInfo>
+  </PackageInfoList>
 </StoreAssociation>

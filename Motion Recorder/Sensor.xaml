@@ -45,14 +45,14 @@
 
         </Grid>
 
-        <CommandBar Grid.Row="1" DefaultLabelPosition="Right">
+        <CommandBar Grid.Row="1" DefaultLabelPosition="Right" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" OverflowButtonVisibility="Collapsed">
             <CommandBar.Content>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <TextBlock Text="Record Entries：" FontSize="20" VerticalAlignment="Center" Margin="5">
+                    <TextBlock Text="Record Entries：" Margin="12,10,0,0">
                         <Run x:Name="data_count" Text="0"/>
                     </TextBlock>
-                    <TextBlock Text="Period（mm）：" FontSize="20" VerticalAlignment="Center" Margin="5"/>
-                    <TextBox x:Name="timeSpan" Text="500" FontSize="15" VerticalAlignment="Center" InputScope="Number" Margin="0, 5"/>
+                    <TextBlock Text="Period（mm）：" Margin="12,10,0,0"/>
+                    <TextBox x:Name="timeSpan" Text="500" InputScope="Number" Margin="0, 5"/>
                 </StackPanel>
             </CommandBar.Content>
             <AppBarButton x:Name="record_control" Icon="Play" Label="Record" Click="Record_Click"/>
