@@ -71,15 +71,15 @@ namespace Motion_Recorder
                 store_data.IsEnabled = false;
             }
 
-            accelerationX.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            accelerationY.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            accelerationZ.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            pitchDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            rollDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            yawDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            angularVelocityX.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            angularVelocityY.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
-            angularVelocityZ.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //accelerationX.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //accelerationY.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //accelerationZ.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //pitchDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //rollDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //yawDegrees.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //angularVelocityX.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //angularVelocityY.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
+            //angularVelocityZ.AnimationsSpeed = TimeSpan.FromMilliseconds(100);
         }
 
         DisplayRequest _displayRequest = new DisplayRequest();
@@ -212,10 +212,14 @@ namespace Motion_Recorder
             {
                 if (this.IsLoaded)
                 {
-                    areading = args.Reading;
-                    accelerationX.Value = Math.Round(areading.AccelerationX, 3);
-                    accelerationY.Value = Math.Round(areading.AccelerationY, 3);
-                    accelerationZ.Value = Math.Round(areading.AccelerationZ, 3);
+                    try
+                    {
+                        areading = args.Reading;
+                        accelerationX.Value = Math.Round(areading.AccelerationX, 3);
+                        accelerationY.Value = Math.Round(areading.AccelerationY, 3);
+                        accelerationZ.Value = Math.Round(areading.AccelerationZ, 3);
+                    }
+                    catch { }
                 }
             });
         }
@@ -226,10 +230,14 @@ namespace Motion_Recorder
             {
                 if (this.IsLoaded)
                 {
-                    ireading = args.Reading;
-                    pitchDegrees.Value = Math.Round(ireading.PitchDegrees, 3);
-                    rollDegrees.Value = Math.Round(ireading.RollDegrees, 3);
-                    yawDegrees.Value = Math.Round(ireading.YawDegrees, 3);
+                    try
+                    {
+                        ireading = args.Reading;
+                        pitchDegrees.Value = Math.Round(ireading.PitchDegrees, 3);
+                        rollDegrees.Value = Math.Round(ireading.RollDegrees, 3);
+                        yawDegrees.Value = Math.Round(ireading.YawDegrees, 3);
+                    }
+                    catch { }
                 }
             });
         }
@@ -240,10 +248,14 @@ namespace Motion_Recorder
             {
                 if (this.IsLoaded)
                 {
-                    greading = args.Reading;
-                    angularVelocityX.Value = Math.Round(greading.AngularVelocityX, 3);
-                    angularVelocityY.Value = Math.Round(greading.AngularVelocityY, 3);
-                    angularVelocityZ.Value = Math.Round(greading.AngularVelocityZ, 3);
+                    try
+                    {
+                        greading = args.Reading;
+                        angularVelocityX.Value = Math.Round(greading.AngularVelocityX, 3);
+                        angularVelocityY.Value = Math.Round(greading.AngularVelocityY, 3);
+                        angularVelocityZ.Value = Math.Round(greading.AngularVelocityZ, 3);
+                    }
+                    catch { }
                 }
             });
         }

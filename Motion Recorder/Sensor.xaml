@@ -3,7 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Motion_Recorder"
-    xmlns:chart="using:LiveCharts.Uwp"
+    xmlns:telerikDataViz="using:Telerik.UI.Xaml.Controls.DataVisualization"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -16,9 +16,39 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-
+        <ScrollViewer>
             <Grid>
+                <Grid.Resources>
+                    <Style x:Key="Acceleration" TargetType="telerikDataViz:RadLinearGauge">
+                        <Setter Target="Height" Value="150"/>
+                        <Setter Target="Width" Value="200"/>
+                        <Setter Target="MinValue" Value="-2"/>
+                        <Setter Target="MaxValue" Value="2"/>
+                        <Setter Target="LabelStep" Value="0.5"/>
+                        <Setter Target="TickStep" Value="0.2"/>
+                        <Setter Target="LabelOffset" Value="-20"/>
+                        <Setter Target="Margin" Value="0 20 0 20"/>
+                    </Style>
+                    <Style x:Key="Degrees" TargetType="telerikDataViz:RadRadialGauge">
+                        <Setter Target="Height" Value="150"/>
+                        <Setter Target="LabelStep" Value="30"/>
+                        <Setter Target="TickStep" Value="30"/>
+                        <Setter Target="LabelRadiusScale" Value="1.15"/>
+                        <Setter Target="Margin" Value="0 25 0 20"/>
+                    </Style>
+                    <Style x:Key="AngularVelocity" TargetType="telerikDataViz:RadRadialGauge">
+                        <Setter Target="Height" Value="150"/>
+                        <Setter Target="MinValue" Value="-500"/>
+                        <Setter Target="MaxValue" Value="400"/>
+                        <Setter Target="LabelStep" Value="100"/>
+                        <Setter Target="TickStep" Value="100"/>
+                        <Setter Target="MinAngle" Value="-90"/>
+                        <Setter Target="MaxAngle" Value="234"/>
+                        <Setter Target="LabelRadiusScale" Value="1.15"/>
+                        <Setter Target="Margin" Value="0 25 0 20"/>
+                    </Style>
+                </Grid.Resources>
+
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -30,7 +60,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <chart:Gauge Grid.Row="0" Grid.Column="0" x:Name="accelerationX" From="-3" To="3"/>
+                <!--<chart:Gauge Grid.Row="0" Grid.Column="0" x:Name="accelerationX" From="-3" To="3"/>
                 <chart:Gauge Grid.Row="0" Grid.Column="1" x:Name="accelerationY" From="-3" To="3"/>
                 <chart:Gauge Grid.Row="0" Grid.Column="2" x:Name="accelerationZ" From="-3" To="3"/>
 
@@ -40,10 +70,244 @@
 
                 <chart:Gauge Grid.Row="2" Grid.Column="0" x:Name="angularVelocityX" From="-500" To="500"/>
                 <chart:Gauge Grid.Row="2" Grid.Column="1" x:Name="angularVelocityY" From="-500" To="500"/>
-                <chart:Gauge Grid.Row="2" Grid.Column="2" x:Name="angularVelocityZ" From="-500" To="500"/>
-            </Grid>
+                <chart:Gauge Grid.Row="2" Grid.Column="2" x:Name="angularVelocityZ" From="-500" To="500"/>-->
 
-        </Grid>
+                <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="AccelerationX"/>
+                        <Run Text="{x:Bind accelerationX.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadLinearGauge Grid.Row="1" telerikDataViz:RadLinearGauge.Orientation="Horizontal" Style="{StaticResource Acceleration}">
+                        <telerikDataViz:RadLinearGauge.TickTemplate>
+                            <DataTemplate>
+                                <Rectangle Width="1" Height="5" Fill="#999999" Margin="0 0 0 3"></Rectangle>
+                            </DataTemplate>
+                        </telerikDataViz:RadLinearGauge.TickTemplate>
+                        <telerikDataViz:SegmentedLinearGaugeIndicator Value="2" telerikDataViz:RadLinearGauge.Orientation="Horizontal">
+                            <telerikDataViz:BarIndicatorSegment Length="1" Stroke="#999999" Thickness="2" telerikDataViz:RadLinearGauge.Orientation="Horizontal"/>
+                            <telerikDataViz:BarIndicatorSegment Length="1" Stroke="Red" Thickness="2" telerikDataViz:RadLinearGauge.Orientation="Horizontal"/>
+                        </telerikDataViz:SegmentedLinearGaugeIndicator>
+                        <telerikDataViz:MarkerGaugeIndicator  telerikDataViz:RadLinearGauge.Orientation="Horizontal" Value="0">
+                            <telerikDataViz:MarkerGaugeIndicator.Content>
+                                <Rectangle Width="7" Height="2" Fill="#999999" Margin="0 0 5 0" />
+                            </telerikDataViz:MarkerGaugeIndicator.Content>
+                        </telerikDataViz:MarkerGaugeIndicator>
+                        <telerikDataViz:LinearBarGaugeIndicator x:Name="accelerationX" telerikDataViz:RadLinearGauge.Orientation="Horizontal" Brush="Black" Thickness="12" IsAnimated="True"  telerikDataViz:RadLinearGauge.IndicatorOffset="10" Value="{Binding Revenues}"/>
+                    </telerikDataViz:RadLinearGauge>
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="AccelerationY"/>
+                        <Run Text="{x:Bind accelerationY.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadLinearGauge Grid.Row="1" telerikDataViz:RadLinearGauge.Orientation="Vertical" Style="{StaticResource Acceleration}">
+                        <telerikDataViz:RadLinearGauge.TickTemplate>
+                            <DataTemplate>
+                                <Rectangle Width="1" Height="5" Fill="#999999" Margin="0 0 0 3"></Rectangle>
+                            </DataTemplate>
+                        </telerikDataViz:RadLinearGauge.TickTemplate>
+                        <telerikDataViz:SegmentedLinearGaugeIndicator Value="2" telerikDataViz:RadLinearGauge.Orientation="Vertical">
+                            <telerikDataViz:BarIndicatorSegment Length="1" Stroke="#999999" Thickness="2" telerikDataViz:RadLinearGauge.Orientation="Vertical"/>
+                            <telerikDataViz:BarIndicatorSegment Length="1" Stroke="Red" Thickness="2" telerikDataViz:RadLinearGauge.Orientation="Vertical"/>
+                        </telerikDataViz:SegmentedLinearGaugeIndicator>
+                        <telerikDataViz:MarkerGaugeIndicator  telerikDataViz:RadLinearGauge.Orientation="Vertical" Value="0">
+                            <telerikDataViz:MarkerGaugeIndicator.Content>
+                                <Rectangle Width="7" Height="2" Fill="#999999" Margin="0 0 5 0" />
+                            </telerikDataViz:MarkerGaugeIndicator.Content>
+                        </telerikDataViz:MarkerGaugeIndicator>
+                        <telerikDataViz:LinearBarGaugeIndicator x:Name="accelerationY" telerikDataViz:RadLinearGauge.Orientation="Vertical" Brush="Black" Thickness="12" IsAnimated="True"  telerikDataViz:RadLinearGauge.IndicatorOffset="10" Value="{Binding Revenues}"/>
+                    </telerikDataViz:RadLinearGauge>
+                </Grid>
+
+                <Grid Grid.Row="0" Grid.Column="2" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="AccelerationZ"/>
+                        <Run Text="{x:Bind accelerationZ.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadLinearGauge Grid.Row="1" telerikDataViz:RadLinearGauge.Orientation="Vertical" Style="{StaticResource Acceleration}">
+                        <telerikDataViz:RadLinearGauge.TickTemplate>
+                            <DataTemplate>
+                                <Rectangle Width="1" Height="5" Fill="#999999" Margin="0 0 0 3"></Rectangle>
+                            </DataTemplate>
+                        </telerikDataViz:RadLinearGauge.TickTemplate>
+                        <telerikDataViz:SegmentedLinearGaugeIndicator Value="2" telerikDataViz:RadLinearGauge.Orientation="Vertical">
+                            <telerikDataViz:BarIndicatorSegment Length="1" Stroke="#999999" Thickness="2" telerikDataViz:RadLinearGauge.Orientation="Vertical"/>
+                            <telerikDataViz:BarIndicatorSegment Length="1" Stroke="Red" Thickness="2" telerikDataViz:RadLinearGauge.Orientation="Vertical"/>
+                        </telerikDataViz:SegmentedLinearGaugeIndicator>
+                        <telerikDataViz:MarkerGaugeIndicator  telerikDataViz:RadLinearGauge.Orientation="Vertical" Value="0">
+                            <telerikDataViz:MarkerGaugeIndicator.Content>
+                                <Rectangle Width="7" Height="2" Fill="#999999" Margin="0 0 5 0" />
+                            </telerikDataViz:MarkerGaugeIndicator.Content>
+                        </telerikDataViz:MarkerGaugeIndicator>
+                        <telerikDataViz:LinearBarGaugeIndicator x:Name="accelerationZ" telerikDataViz:RadLinearGauge.Orientation="Vertical" Brush="Black" Thickness="12" IsAnimated="True"  telerikDataViz:RadLinearGauge.IndicatorOffset="10" Value="{Binding Revenues}"/>
+                    </telerikDataViz:RadLinearGauge>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="PitchDegrees"/>
+                        <Run Text="{x:Bind pitchDegrees.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadRadialGauge MinValue="-180" MaxValue="160" Grid.Row="1" telerikDataViz:RadRadialGauge.MinAngle="-90" telerikDataViz:RadRadialGauge.MaxAngle="250" Style="{StaticResource Degrees}">
+                        <telerikDataViz:RadRadialGauge.LabelTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="#595959"></TextBlock>
+                            </DataTemplate>
+                        </telerikDataViz:RadRadialGauge.LabelTemplate>
+                        <telerikDataViz:SegmentedRadialGaugeIndicator  StartValue="0" Value="90">
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="#595959" Length="2"/>
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="Red" Length="1" />
+                        </telerikDataViz:SegmentedRadialGaugeIndicator>
+                        <telerikDataViz:ArrowGaugeIndicator x:Name="pitchDegrees" Value="{Binding RevenuesPercent}" IsAnimated="True" Brush="Black" Thickness="3" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="0.9"/>
+                        <telerikDataViz:MarkerGaugeIndicator Value="60" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="1">
+                            <telerikDataViz:MarkerGaugeIndicator.Content>
+                                <Ellipse Fill="Black" Stroke="Red" StrokeThickness="2" Width="7" Height="7"></Ellipse>
+                            </telerikDataViz:MarkerGaugeIndicator.Content>
+                        </telerikDataViz:MarkerGaugeIndicator>
+                    </telerikDataViz:RadRadialGauge>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="RollDegrees"/>
+                        <Run Text="{x:Bind rollDegrees.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadRadialGauge MinValue="-90" MaxValue="90" Grid.Row="1" telerikDataViz:RadRadialGauge.MinAngle="0" telerikDataViz:RadRadialGauge.MaxAngle="180" Style="{StaticResource Degrees}">
+                        <telerikDataViz:RadRadialGauge.LabelTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="#595959"></TextBlock>
+                            </DataTemplate>
+                        </telerikDataViz:RadRadialGauge.LabelTemplate>
+                        <telerikDataViz:SegmentedRadialGaugeIndicator  StartValue="-90" Value="90">
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="Red" Length="1"/>
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="#595959" Length="4"/>
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="Red" Length="1" />
+                        </telerikDataViz:SegmentedRadialGaugeIndicator>
+                        <telerikDataViz:ArrowGaugeIndicator x:Name="rollDegrees" Value="{Binding RevenuesPercent}" IsAnimated="True" Brush="Black" Thickness="3" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="0.9"/>
+                        <telerikDataViz:MarkerGaugeIndicator Value="-60" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="1">
+                            <telerikDataViz:MarkerGaugeIndicator.Content>
+                                <Ellipse Fill="Black" Stroke="Red" StrokeThickness="2" Width="7" Height="7"></Ellipse>
+                            </telerikDataViz:MarkerGaugeIndicator.Content>
+                        </telerikDataViz:MarkerGaugeIndicator>
+                        <telerikDataViz:MarkerGaugeIndicator Value="60" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="1">
+                            <telerikDataViz:MarkerGaugeIndicator.Content>
+                                <Ellipse Fill="Black" Stroke="Red" StrokeThickness="2" Width="7" Height="7"></Ellipse>
+                            </telerikDataViz:MarkerGaugeIndicator.Content>
+                        </telerikDataViz:MarkerGaugeIndicator>
+                    </telerikDataViz:RadRadialGauge>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="YawDegrees"/>
+                        <Run Text="{x:Bind yawDegrees.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadRadialGauge MinValue="0" MaxValue="340" Grid.Row="1" telerikDataViz:RadRadialGauge.MinAngle="-90" telerikDataViz:RadRadialGauge.MaxAngle="250" Style="{StaticResource Degrees}">
+                        <telerikDataViz:RadRadialGauge.LabelTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="#595959"></TextBlock>
+                            </DataTemplate>
+                        </telerikDataViz:RadRadialGauge.LabelTemplate>
+                        <telerikDataViz:SegmentedRadialGaugeIndicator  StartValue="0" Value="330">
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="#595959" Length="1"/>
+                        </telerikDataViz:SegmentedRadialGaugeIndicator>
+                        <telerikDataViz:ArrowGaugeIndicator x:Name="yawDegrees" Value="{Binding RevenuesPercent}" IsAnimated="True" Brush="Black" Thickness="3" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="0.9"/>
+                    </telerikDataViz:RadRadialGauge>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="0" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="AngularVelocityX"/>
+                        <Run Text="{x:Bind angularVelocityX.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadRadialGauge Grid.Row="1" Style="{StaticResource AngularVelocity}">
+                        <telerikDataViz:RadRadialGauge.LabelTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="#595959"></TextBlock>
+                            </DataTemplate>
+                        </telerikDataViz:RadRadialGauge.LabelTemplate>
+                        <telerikDataViz:SegmentedRadialGaugeIndicator StartValue="-500" Value="400">
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="#595959" Length="1"/>
+                        </telerikDataViz:SegmentedRadialGaugeIndicator>
+                        <telerikDataViz:ArrowGaugeIndicator x:Name="angularVelocityX" Value="{Binding RevenuesPercent}" IsAnimated="True" Brush="Black" Thickness="3" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="0.9"/>
+                    </telerikDataViz:RadRadialGauge>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="AngularVelocityY"/>
+                        <Run Text="{x:Bind angularVelocityY.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadRadialGauge Grid.Row="1" Style="{StaticResource AngularVelocity}">
+                        <telerikDataViz:RadRadialGauge.LabelTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="#595959"></TextBlock>
+                            </DataTemplate>
+                        </telerikDataViz:RadRadialGauge.LabelTemplate>
+                        <telerikDataViz:SegmentedRadialGaugeIndicator StartValue="-500" Value="400">
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="#595959" Length="1"/>
+                        </telerikDataViz:SegmentedRadialGaugeIndicator>
+                        <telerikDataViz:ArrowGaugeIndicator x:Name="angularVelocityY" Value="{Binding RevenuesPercent}" IsAnimated="True" Brush="Black" Thickness="3" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="0.9"/>
+                    </telerikDataViz:RadRadialGauge>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Center">
+                        <Run Text="AngularVelocityZ"/>
+                        <Run Text="{x:Bind angularVelocityZ.Value, Mode=OneWay}"/>
+                    </TextBlock>
+                    <telerikDataViz:RadRadialGauge Grid.Row="1" Style="{StaticResource AngularVelocity}">
+                        <telerikDataViz:RadRadialGauge.LabelTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="15" Foreground="#595959"></TextBlock>
+                            </DataTemplate>
+                        </telerikDataViz:RadRadialGauge.LabelTemplate>
+                        <telerikDataViz:SegmentedRadialGaugeIndicator StartValue="-500" Value="400">
+                            <telerikDataViz:BarIndicatorSegment Thickness="2" Stroke="#595959" Length="1"/>
+                        </telerikDataViz:SegmentedRadialGaugeIndicator>
+                        <telerikDataViz:ArrowGaugeIndicator x:Name="angularVelocityZ" Value="{Binding RevenuesPercent}" IsAnimated="True" Brush="Black" Thickness="3" telerikDataViz:RadRadialGauge.IndicatorRadiusScale="0.9"/>
+                    </telerikDataViz:RadRadialGauge>
+                </Grid>
+
+            </Grid>
+        </ScrollViewer>
 
         <CommandBar Grid.Row="1" DefaultLabelPosition="Right" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" OverflowButtonVisibility="Collapsed">
             <CommandBar.Content>
