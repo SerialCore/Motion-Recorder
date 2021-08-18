@@ -57,7 +57,7 @@ namespace MotionRecorder
             Console.WriteLine("Recorder ends.");
 
             ExportTable(sensor.Record);
-            Console.WriteLine("The data has been archieved in documents library.");
+            Console.WriteLine("The data has been archived in documents library.");
             Console.WriteLine("Thank you for using this app.");
             Console.Read();
         }
